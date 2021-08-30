@@ -1,0 +1,61 @@
+$halfWidth: 48%;
+
+.formValidate {
+    width: 30%;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: calc(100% - (2 * 48%));
+    padding: 10px;
+    color: white;
+
+    .formValidate_formGroup {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+
+        .formValidate_label {
+            margin-bottom: 5px;
+        }
+
+        .formValidate_span {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            
+            .formValidate_input[type=text], .formValidate_input[type=number], .formValidate_input[type=email], .formValidate_input[type=password] {
+                width: 100%;
+                padding: 15px;
+                background-color: #0A1D1C;
+                border: 1px solid #1F5E5B;
+                color: white;
+            }
+
+            .formValidate_input[type=checkbox] {
+                width: 20px;
+                height: 20px
+            }
+
+            p {
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .formValidate_buttonGroup {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+
+        gap: calc(100% - (2 * 48%));
+
+        .formValidate_button {
+            width: $halfWidth;
+            padding: 5px;
+            cursor: pointer;
+            background-color: #00F9B6;
+            border: none;
+        }
+    }
+}

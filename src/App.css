@@ -53,3 +53,15 @@
 svg {
   height: 20px;
 }
+
+.halfWidth {
+  width: 48%;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.error_message {
+  color: red;
+}

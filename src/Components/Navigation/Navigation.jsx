@@ -1,7 +1,7 @@
 import Style from './Navigation.module.scss'
 
 import logo from '../../Assets/Svg/Logo.svg'
-import { Mail, Phone } from '../../Assets/Svg/SvgComponents'
+import { Mail, Phone, ShoppingBasket } from '../../Assets/Svg/SvgComponents'
 
 const Navigation = () => {
     return (
@@ -14,13 +14,15 @@ const Navigation = () => {
             <span className={Style.pageNavigation_searchAndInfo}>
                 <div className={Style.pageNavigation_info}>
                     <div className={Style.pageNavigation_info_mail}>
+                        <Mail color="white" />
                         <p>mail@mail.com</p>
                     </div>
                     <div className={Style.pageNavigation_info_phone}> 
+                        <Phone color="white" />
                         <p>+45 11 22 33 44</p>
                     </div>
-                    <div>
-                        <p>cart</p>
+                    <div className={Style.pageNavigation_info_cart}>
+                        <ShoppingBasket color="white" />
                     </div>
                 </div>
                 <div className={Style.pageNavigation_search}>
