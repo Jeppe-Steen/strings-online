@@ -1,0 +1,55 @@
+/* colors 
+
+  Background: #
+  #ffffff
+  #d10061
+  #0a1d1c
+  #ff003d
+  #2c3737
+  #afafaf
+  #
+  #393939
+*/
+
+
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.content_container {
+  background-color: #131313;
+  width: 100%;
+  min-height: 100vh;
+
+  padding: 10px 50px 50px 50px;
+
+  position: relative;
+  display: grid;
+  grid-template: 50px auto / 15% 85%;
+  grid-template-areas: 'breadC breadC' 'navi content';
+  gap: 20px;
+}
+
+.content {
+  grid-area: content;
+}
+
+/* svg colors */
+/* need to change these things */
+.white {
+  fill: white;
+}
+
+.neonGreen {
+  fill: #00F9B6;
+  margin-right: 5px;
+}
+
+svg {
+  height: 20px;
+}

@@ -1,0 +1,11 @@
+.breadcrum {
+    width: 100%;
+    grid-area: breadC;
+    border-color: lightgrey;
+    border-width: 1px;
+    border-style: solid  hidden solid hidden;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    color: #00F9B6;
+}

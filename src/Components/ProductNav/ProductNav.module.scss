@@ -1,0 +1,14 @@
+.productNav {
+    grid-area: productNav;
+    background-color: #0A1D1C;
+    border: 1px solid #1F5E5B;
+    color: #00F9B6;
+    grid-area: navi;
+    width: 200px;
+    height: fit-content;
+    padding: 10px;
+
+    .productNav_menu, .productNav_submenu {
+        list-style: none;
+    }
+}

@@ -1,0 +1,79 @@
+.pageNavigation {
+    width: 100%;
+    position: sticky;
+    height: 20vh;
+    background-color: #131313;
+    z-index: 9000;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .pageNavigation_menuWithLogo {
+        width: fit-content;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 90px;
+
+        position: absolute;
+        left: 5%;
+        bottom: 10%;
+
+        .pageNavigation_logo {
+            height: 100%;
+            z-index: 9001;
+        }
+
+        .pageNavigation_menu {
+            height: 43px;
+            width: 700px;
+            border: 2px solid white;
+            border-left: none;
+            position: absolute;
+            border-radius: 0 5px 5px 0;
+            left: 175px;
+        }
+    }
+
+    .pageNavigation_searchAndInfo {
+        width: 350px;
+        height: fit-content;
+        position: absolute;
+        right: 5%;
+        bottom: 24%;
+        overflow: hidden;
+
+        .pageNavigation_info {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 30%;
+            padding: 10px;
+            color: white;
+        }
+
+        .pageNavigation_search {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+
+            input {
+                width: 70%;
+                height: 45px;
+                padding: 5px;
+                border: none;
+            }
+            button {
+                width: 25%;
+                height: 45px;
+                border: none;
+            }
+        }
+    }
+}
