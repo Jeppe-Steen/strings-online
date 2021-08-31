@@ -4,12 +4,31 @@ import {Link} from 'react-router-dom';
 import logo from '../../Assets/Svg/Logo.svg'
 import { Mail, Phone, ShoppingBasket } from '../../Assets/Svg/SvgComponents'
 
+import { AppContext } from '../../Context/ContextProvider';
+import { useContext } from 'react';
+
 const Navigation = () => {
+
+    const {shoppingcart, loginData, setLoginData} = useContext(AppContext);
+
+    const handleLogout = () => {
+        setLoginData({});
+        sessionStorage.clear();
+    }
+
     return (
         <header className={Style.pageNavigation}>
             <span className={Style.pageNavigation_menuWithLogo}>
                 <img className={Style.pageNavigation_logo} src={logo} alt="strings online logo" />
-                <nav className={Style.pageNavigation_menu}></nav>
+                <nav className={Style.pageNavigation_menu}>
+                    <ul>
+                        <Link className={Style.pageNavigation_link} to="/"><li>Forside</li></Link>
+                        <Link className={Style.pageNavigation_link} to="/handelsbetingelser"><li>Salgs- og handelbetingelser</li></Link>
+                        {loginData.user_id ? <Link onClick={handleLogout} className={`${Style.pageNavigation_link} ${Style.pageNavigation_link_login}`} to="/"><li>Logout</li></Link> :
+                        <Link className={`${Style.pageNavigation_link} ${Style.pageNavigation_link_login}`} to="/login"><li>Login</li></Link>}
+                        {loginData.user_id ? <Link className={`${Style.pageNavigation_link} ${Style.pageNavigation_link_admin}`} to="/admin"><li>Admin</li></Link> : null}
+                    </ul>
+                </nav>
             </span>
 
             <span className={Style.pageNavigation_searchAndInfo}>
@@ -24,6 +43,7 @@ const Navigation = () => {
                     </div>
                     <div className={Style.pageNavigation_info_cart}>
                         <Link to="/indkøbskurv"><ShoppingBasket color="white" /></Link>
+                        <p>{shoppingcart.length}</p>
                     </div>
                 </div>
                 <div className={Style.pageNavigation_search}>

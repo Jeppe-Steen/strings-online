@@ -11,30 +11,34 @@ import { Navigation } from './Components/Navigation/Navigation'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 
+import {AppContextProvider} from './Context/ContextProvider';
+
 function App() {
   return (
-    <BrowserRouter>
-      <Navigation />
+    <AppContextProvider>
+      <BrowserRouter>
+        <Navigation />
 
-      <Switch>
-        <Route exact path="/"> <Redirect to="/forside" /> </Route>
+        <Switch>
+          <Route exact path="/"> <Redirect to="/forside" /> </Route>
 
-        <Route exact path="/forside"> <Front /> </Route>
+          <Route exact path="/forside"> <Front /> </Route>
 
-        <Route path="/produkter"> <Products /> </Route>
+          <Route path="/produkter"> <Products /> </Route>
 
-        <Route exact path="/indkøbskurv"> <Cart /> </Route>
+          <Route exact path="/indkøbskurv"> <Cart /> </Route>
 
-        <Route exact path="/køb"> <Buy /> </Route>
+          <Route exact path="/køb"> <Buy /> </Route>
 
-        <Route exact path="/kvittering"> <Billing /> </Route>
+          <Route exact path="/kvittering"> <Billing /> </Route>
 
-        <Route exact path="/Login"> <Login /> </Route>
+          <Route exact path="/Login"> <Login /> </Route>
 
-        <Route exact path="/admin"> <Admin /> </Route>
+          <Route exact path="/admin"> <Admin /> </Route>
 
-      </Switch>
-    </BrowserRouter>
+        </Switch>
+      </BrowserRouter>
+    </AppContextProvider>
   );
 }
 

@@ -1,0 +1,110 @@
+.cart_item {
+    width: 100%;
+    height: 200px;
+    background-color: white;
+    margin-bottom: 20px;
+    position: relative;
+    border: 1px solid white;
+
+    img {
+        position: absolute;
+        width: 15%;
+        top: 50%;
+        left: 20px;
+        transform: translateY(-50%) rotate(-90deg);
+    }
+
+
+    figcaption {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 80%;
+        height: 100%;
+        background-color: #131313;
+        padding: 20px 50px;
+        color: white;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        div {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            position: absolute;
+            right: 20px;
+
+            & > p {
+                margin: 0 20px;
+            }
+
+            span {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                span {
+                    width: 150px;
+                    background-color: #00F9B6;
+                    height: 55px;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                    font-size: 1.5rem;
+                    color: #1F5E5B;
+                    border-radius: 10px;
+
+                    p {
+                        color: #1F5E5B;
+                    }
+    
+                    button {
+                        width: 50px;
+                        height: 100%;
+                        background-color: #00F9B6;
+                        border: none;
+    
+                        font-size: 1.5rem;
+                        color: #1F5E5B;
+                        border-radius: 10px;
+                        
+    
+                        &:hover {
+                            font-size: 2rem;
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                p {
+                    color: #00F9B6;
+                }
+            }
+
+            .price {
+                width: 200px;
+                padding: 20px;
+                border: 1px solid white;
+                border-radius: 10px;
+            }
+
+            .remove {
+                padding: 10px 20px;
+                border-radius: 10px;
+                background-color: #D10061;
+                border: none;
+                font-size: 2rem;
+                font-weight: 600;
+                color: white;
+                cursor: pointer;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+}

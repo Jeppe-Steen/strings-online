@@ -1,27 +1,20 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useContext, useEffect } from 'react';
 import { doFetch } from '../../Helpers/Fetching';
 import Style from './FormValidate_login.module.scss';
+
+import { AppContext } from '../../Context/ContextProvider';
+import { useHistory } from 'react-router';
 
 const FormValidate = (props) => {
 
     const formFields = props.inputs;
+    const {setLoginData} = useContext(AppContext);
+    const history = useHistory();
 
     const userData = {
         username: null,
         password: null
     };
-
-    const checkingIfLoggedin = () => {
-        if(JSON.parse(sessionStorage.getItem('token'))) {
-            if(!JSON.parse(sessionStorage.getItem('token')).message) {
-                window.location = '/admin'
-            } else {
-                return false;
-            } 
-        } else {
-            return false
-        }
-    }
 
     const removeError = (e) => {
         e.target.style.borderColor = 'unset';
@@ -59,7 +52,9 @@ const FormValidate = (props) => {
         const response = await doFetch(url, 'POST', formData);
 
         sessionStorage.setItem('token', JSON.stringify(response, null, 2));
-        checkingIfLoggedin();
+        setLoginData(response);
+
+        history.push('/admin');
     }
 
     const handleSubmit = () => {
@@ -108,7 +103,6 @@ const FormValidate = (props) => {
 
         if(!hasError) {
             getData();
-            
         }
     }
 
@@ -130,11 +124,6 @@ const FormValidate = (props) => {
         let pattern = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
         return pattern.test(val);
     }
-
-    useEffect(() => {
-        checkingIfLoggedin();
-    }, [])
-
 
     return (
         <form className={Style.formValidate}>
