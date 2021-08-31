@@ -65,3 +65,7 @@ svg {
 .error_message {
   color: red;
 }
+
+.active {
+  display: block;
+}

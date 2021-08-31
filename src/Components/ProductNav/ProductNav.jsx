@@ -2,6 +2,7 @@ import Style from './ProductNav.module.scss';
 
 import {doFetch} from '../../Helpers/Fetching'
 import { useEffect, useState } from 'react';
+import {NavLink} from 'react-router-dom';
 
 const ProductNav = () => {
 
@@ -32,9 +33,6 @@ const ProductNav = () => {
         getProductNav();
     }, []);
 
-    const handleClick = (e) => {
-    }
-
 
 
     return (
@@ -46,7 +44,7 @@ const ProductNav = () => {
                         <ul className={Style.productNav_submenu}>
                             {item.subgroup.map(element => {
                                 return (
-                                    <li onClick={(e) => {handleClick()}} className={Style.productNav_submenuItem} key={element.id}>{element.title}</li>
+                                    <NavLink key={element.id} className={Style.productNav_submenuItem} to={`/produkter/${item.id}/${element.id}`}><li> {element.title} </li></NavLink>
                                 )
                             })}
                         </ul>

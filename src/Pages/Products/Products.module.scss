@@ -1,0 +1,19 @@
+.products {
+
+    header {
+        width: 100%;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 20px;
+
+        p {
+            width: 100px;
+            background-color: lightgrey;
+            margin-left: 20px;
+            text-align: center;
+        }
+    }
+}

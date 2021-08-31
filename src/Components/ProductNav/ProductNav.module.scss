@@ -10,5 +10,31 @@
 
     .productNav_menu, .productNav_submenu {
         list-style: none;
+        cursor: pointer;
+    }
+
+    .productNav_menuItem:hover {
+        color: white;
+
+        .productNav_submenu {
+            display: block;
+        }
+    }
+
+    .productNav_submenu {
+        display: none;
+
+        .productNav_submenuItem {
+            text-decoration: none;
+            color: #00F9B6;
+            
+            li {
+                margin-left: 10px;
+            }
+
+            &:hover {
+                color: white;
+            }
+        } 
     }
 }

@@ -12,10 +12,14 @@ const FormValidate = (props) => {
     };
 
     const checkingIfLoggedin = () => {
-        if(!JSON.parse(sessionStorage.getItem('token')).message) {
-            window.location = '/admin'
+        if(JSON.parse(sessionStorage.getItem('token'))) {
+            if(!JSON.parse(sessionStorage.getItem('token')).message) {
+                window.location = '/admin'
+            } else {
+                return false;
+            } 
         } else {
-            
+            return false
         }
     }
 

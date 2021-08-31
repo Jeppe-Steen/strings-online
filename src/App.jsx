@@ -21,7 +21,7 @@ function App() {
 
         <Route exact path="/forside"> <Front /> </Route>
 
-        <Route exact path="/produkter"> <Products /> </Route>
+        <Route path="/produkter"> <Products /> </Route>
 
         <Route exact path="/indkøbskurv"> <Cart /> </Route>
 
