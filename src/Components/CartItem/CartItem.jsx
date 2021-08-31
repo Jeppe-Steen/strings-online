@@ -7,6 +7,7 @@ const CartItem = (props) => {
     const place = props.place;
 
     const [count, setCount] = useState(1);
+    const [priceOfItem, setPriceOfItem] = useState(0);
     const {shoppingcart, setShoppingcart, totalPrice, setTotalPrice} = useContext(AppContext);
 
     const handleCount = (event)=> {
@@ -16,19 +17,18 @@ const CartItem = (props) => {
             case 'rem': 
                 if(count > 1) {
                     setCount(count - 1)
+                    setTotalPrice(parseInt(totalPrice) - parseInt(data.price))
                 }
                 break;
             case 'add':
                 setCount(count + 1)
+                setTotalPrice(parseInt(totalPrice) + parseInt(data.price))
                 break;
         }
     }
 
-    useEffect(() => {
-        setTotalPrice(totalPrice + (data.price * count))
-    }, [count])
-
     const handleRemove = () => {
+        setTotalPrice(parseInt(totalPrice) - parseInt(data.price * count))
         const temp = [...shoppingcart];
         temp.splice(place, 1);
         setShoppingcart(temp);

@@ -12,9 +12,10 @@ const Cart = () => {
     const {url} = useRouteMatch();
     const passedBReadcrum = url.replace('/', '');
 
-    const {shoppingcart, setShoppingcart, totalPrice} = useContext(AppContext)
+    const {shoppingcart, setShoppingcart, totalPrice, setTotalPrice} = useContext(AppContext)
 
-    const handleRemove = () => {
+    const handleRemoveAll = () => {
+        setTotalPrice(0)
         setShoppingcart([]);
     }
 
@@ -39,7 +40,7 @@ const Cart = () => {
                         <p>DKK {totalPrice}</p>
                         <p>prisen er inkl. moms</p>
                     </span>
-                    <button onClick={handleRemove} className={Style.removeItems}>RYD</button>
+                    <button onClick={handleRemoveAll} className={Style.removeItems}>RYD</button>
                 </div>
 
                 <button onClick={handleBuy} className={Style.buy}>Til kassen</button>

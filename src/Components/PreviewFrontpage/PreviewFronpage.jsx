@@ -5,9 +5,10 @@ import { useContext } from 'react';
 const PreviewFrontpage = (props) => {
     const product = props.object;
 
-    const {shoppingcart, setShoppingcart} = useContext(AppContext);
+    const {shoppingcart, setShoppingcart, setTotalPrice, totalPrice} = useContext(AppContext);
     
     const handleClick = () => {
+        setTotalPrice(parseInt(totalPrice) + parseInt(product.price))
         setShoppingcart([...shoppingcart, product]);
     }
 

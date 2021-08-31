@@ -1,7 +1,17 @@
 import Style from './PreviewProducts.module.scss';
+import { AppContext } from '../../Context/ContextProvider';
+import { useContext } from 'react';
 
 const PreviewProducts = (props) => {
     const dataObject = props.data;
+
+    const {shoppingcart, setShoppingcart, totalPrice, setTotalPrice} = useContext(AppContext);
+
+    const handleClick = () => {
+        setTotalPrice(parseInt(totalPrice) + parseInt(dataObject.price))
+        setShoppingcart([...shoppingcart, dataObject]);
+    }
+
     return (
         <figure className={Style.previewProducts}>
             <img src={dataObject.image_fullpath} alt={dataObject.name} />
@@ -12,7 +22,7 @@ const PreviewProducts = (props) => {
                 </span>
                 <span className={Style.previewProducts_buttons}>
                     <p className={Style.price}>pris: DKK {dataObject.price}</p>
-                    <button className={Style.add}>Læg i kurv</button>
+                    <button onClick={handleClick} className={Style.add}>Læg i kurv</button>
                     <p className={Style.count}>{dataObject.stock} på lager</p>
                 </span>
             </figcaption>
