@@ -8,8 +8,7 @@ const PreviewProducts = (props) => {
             <figcaption>
                 <span className={Style.previewProducts_info}>
                     <h2>{dataObject.name}</h2>
-                    <p>{dataObject.description_short}</p>
-                    <p>Læs mere...</p>
+                    <p>{dataObject.description_short} læs mere...</p>
                 </span>
                 <span className={Style.previewProducts_buttons}>
                     <p className={Style.price}>pris: DKK {dataObject.price}</p>

@@ -9,6 +9,10 @@
         justify-content: flex-end;
         padding: 20px;
 
+        @media (max-width: 1199px) {
+            justify-content: center;
+        }
+
         p {
             width: 100px;
             background-color: lightgrey;

@@ -35,6 +35,13 @@
   gap: 20px;
 }
 
+@media (max-width: 1199px) {
+  .content_container {
+    grid-template: 50px auto auto / 100% 100% 100%;
+    grid-template-areas: 'breadC' 'navi' 'content';
+  }
+}
+
 .content {
   grid-area: content;
 }

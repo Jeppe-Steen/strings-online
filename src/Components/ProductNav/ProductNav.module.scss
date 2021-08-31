@@ -8,6 +8,10 @@
     height: fit-content;
     padding: 10px;
 
+    @media (max-width: 1199px) {
+        width: 100%;
+    }
+
     .productNav_menu, .productNav_submenu {
         list-style: none;
         cursor: pointer;

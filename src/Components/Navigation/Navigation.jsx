@@ -1,4 +1,5 @@
 import Style from './Navigation.module.scss'
+import {Link} from 'react-router-dom';
 
 import logo from '../../Assets/Svg/Logo.svg'
 import { Mail, Phone, ShoppingBasket } from '../../Assets/Svg/SvgComponents'
@@ -22,7 +23,7 @@ const Navigation = () => {
                         <p>+45 11 22 33 44</p>
                     </div>
                     <div className={Style.pageNavigation_info_cart}>
-                        <ShoppingBasket color="white" />
+                        <Link to="/indkøbskurv"><ShoppingBasket color="white" /></Link>
                     </div>
                 </div>
                 <div className={Style.pageNavigation_search}>

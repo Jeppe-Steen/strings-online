@@ -5,12 +5,22 @@
     margin-bottom: 20px;
     position: relative;
 
+    @media (max-width: 1199px) {
+        height: 700px;
+    }   
     img {
         position: absolute;
         top: 50%;
         left: 0%;
         transform: translate(10%, -50%) rotate(-90deg);
         width: 25%;
+
+        @media (max-width: 1199px) {
+            top: 25px;
+            left: 50%;
+            width: 90%;
+            transform: translateX(-50%) rotate(0deg);
+        }
     }
 
     figcaption {
@@ -27,14 +37,36 @@
         gap: 2%;
         color: white;
 
+        @media (max-width: 1199px) {
+            height: 80%;
+            width: 100%;
+            bottom: 0;
+            top: unset;
+
+            flex-direction: column;
+        }
+
         .previewProducts_info {
             width: 69%;
             padding: 20px;
+            @media (max-width: 1199px) {
+                width: 100%;
+            }
         }
 
         .previewProducts_buttons {
             width: 29%;
             padding: 20px;
+            position: absolute;
+            right: 0;
+            top: 0;
+
+            @media (max-width: 1199px) {
+                width: 100%;
+                bottom: 0;
+                top: unset;
+                right: unset;
+            }
 
             .price {
                 width: 100%;
