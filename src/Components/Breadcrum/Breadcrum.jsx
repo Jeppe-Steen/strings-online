@@ -1,15 +1,12 @@
 import Style from './Breadcrum.module.scss';
 import { House } from '../../Assets/Svg/SvgComponents';
-import { useEffect, useState } from 'react';
-import { useParams, useRouteMatch } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { AppContext } from '../../Context/ContextProvider';
 
 const Breadcrum = (props) => {
-    const productCategory = props.productCategory;
-    const productSubcategory = props.productSubcategory;
+    const {selectedCategory, selectedSubcategory, selectedProduct} = useContext(AppContext);
 
     const [breadcrum, setBreadcrum] = useState();
-
-    const {url} = useRouteMatch();
 
     useEffect(() => {
         setBreadcrum(props.route);
@@ -20,8 +17,9 @@ const Breadcrum = (props) => {
             <House color="neonGreen" />
             <p>forside \</p>
             <p>{breadcrum}</p>
-            {productCategory ? <p> \ {productCategory} \</p> : null}
-            {productSubcategory ? <p>{productSubcategory}</p> : null}
+            {selectedCategory ? <p>\ {selectedCategory} \</p> : null}
+            {selectedSubcategory ? <p>{selectedSubcategory}</p> : null}
+            {selectedProduct ? <p> {selectedProduct} </p> : null}
         </section>
     )
 }

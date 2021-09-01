@@ -1,28 +1,27 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useContext, useEffect, useState } from "react";
 import { doFetch } from "../../Helpers/Fetching";
 import { PreviewProducts } from "../PreviewProducts/PreviewProducts";
 
 import Style from './ShowProducts.module.scss';
 
-const ShowProducts = (props) => {
-    const setProductCategory = props.setProductCategory;
-    const setProductSubcategory = props.setProductSubcategory;
+import { AppContext } from "../../Context/ContextProvider";
+
+const ShowProducts = () => {
+
+    const { selectedCategory, selectedSubcategory } = useContext(AppContext);
 
     const [products, setProducts] = useState([]);
-    let {productCategory ,productSubcategory} = useParams();
 
     const getProducts = async () => {
-        const url = `https://api.mediehuset.net/stringsonline/groups/${productCategory}/subgroup/${productSubcategory}`
+        const url = `https://api.mediehuset.net/stringsonline/groups/${selectedCategory}/subgroup/${selectedSubcategory}`
         const response = await doFetch(url);
         setProducts(response.subgroup.products)
     }
 
     useEffect(() => {
         getProducts();
-        setProductCategory(productCategory);
-        setProductSubcategory(productSubcategory);
-    }, [productCategory, productSubcategory])
+        
+    }, [selectedCategory, selectedSubcategory])
 
     return (
        <article className={Style.productGrid}>

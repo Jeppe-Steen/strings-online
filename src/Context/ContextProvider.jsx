@@ -4,9 +4,12 @@ const AppContext = createContext();
 
 const AppContextProvider = ({children}) => {
 
-    const [shoppingcart, setShoppingcart] = useState([]);
-    const [loginData, setLoginData] = useState({});
-    const [totalPrice, setTotalPrice] = useState(0);
+    const [ shoppingcart, setShoppingcart ] = useState([]);
+    const [ loginData, setLoginData ] = useState({});
+    const [ totalPrice, setTotalPrice ] = useState(0);
+    const [ selectedProduct, setSelectedProduct ] = useState([]);
+    const [ selectedCategory, setSelectedCategory ] = useState('');
+    const [ selectedSubcategory, setSelectedSubcategory ] = useState('');
 
 
     return (
@@ -17,7 +20,13 @@ const AppContextProvider = ({children}) => {
             loginData,
             setLoginData,
             totalPrice,
-            setTotalPrice
+            setTotalPrice,
+            selectedProduct,
+            setSelectedProduct,
+            selectedCategory,
+            setSelectedCategory,
+            selectedSubcategory,
+            setSelectedSubcategory
         }}>
             {children}
         </AppContext.Provider>

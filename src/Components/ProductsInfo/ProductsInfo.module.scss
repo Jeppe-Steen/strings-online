@@ -1,0 +1,103 @@
+.products_info_grid {
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid grey;
+    padding-bottom: 20px;
+    color: grey;
+
+    .products_info_gallery {
+        width: 25%;
+
+        img {
+            margin-bottom: 20px;
+        }
+    }
+
+    .products_info_info {
+        width: 45%;
+    }
+
+    .products_info_other {
+        width: 25%;
+        padding: 50px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        img {
+            margin-bottom: 50px;
+            width: 100%;
+        }
+
+        .cartOptions {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-end;
+            width: 100%;
+
+            span {
+                width: 70%;
+                display: flex;
+                flex-direction: column;
+                
+
+                p {
+                    width: 100%;
+                    padding: 10px;
+                    border: 1px solid grey;
+                    text-align: center;
+                    color: white;
+                }
+
+                button {
+                    width: 100%;
+                    height: 50px;
+                    margin-top: 10px;
+                    background-color: #D10061;
+                    border: none;
+                    color: white;
+                }
+            }
+
+            input {
+                width: 50px;
+                height: 50px;
+                text-align: center;
+                border: none;
+            }
+        }
+
+        .stock {
+            margin-top: 10px;
+            color: white;
+        }
+    }
+
+    & > span {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .products_info_table {
+        width: 100%;
+        list-style: none;
+        
+        & > li {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border-bottom: 1px solid lightgray;
+            padding: 10px 0;
+
+
+            &:first-child {
+                font-weight: 600;
+            }
+
+        }
+    }
+}

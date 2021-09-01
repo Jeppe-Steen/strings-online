@@ -31,9 +31,8 @@ const Front = () => {
                 }
             )
 
-            const finalList = sortedList.slice(0, 6);
+            const finalList = sortedList.slice(0, 4);
             setBestProducts(finalList);
-            console.log(finalList);
         }, [500])
     }
 
