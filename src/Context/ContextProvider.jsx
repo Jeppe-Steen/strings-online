@@ -14,10 +14,10 @@ const AppContextProvider = ({children}) => {
     // setting loginData id sessionStorage has them
     const settingLoginData = () => {
         const data = JSON.parse(sessionStorage.getItem('token'));
-        if(data && data.user_id) {
-            setLoginData(data);
-        } else {
-            return;
+        if(!loginData.user_id) {
+            if(data && data.user_id) {
+                setLoginData(data);
+            }
         }
     };
 
@@ -39,7 +39,7 @@ const AppContextProvider = ({children}) => {
             selectedCategory,
             setSelectedCategory,
             selectedSubcategory,
-            setSelectedSubcategory
+            setSelectedSubcategory,
         }}>
             {children}
         </AppContext.Provider>

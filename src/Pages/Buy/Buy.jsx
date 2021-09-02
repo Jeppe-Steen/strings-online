@@ -77,10 +77,9 @@ const Buy = () => {
         }
 
         if(!hasError) {
-            setShoppingcart([]);
-            setTotalPrice(0);
-            
             setTimeout(() => {
+                setShoppingcart([]);
+                setTotalPrice(0);
                 postOrder();
                 history.push('/kvittering');  
             }, [500])

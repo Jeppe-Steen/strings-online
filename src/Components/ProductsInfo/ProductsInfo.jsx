@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router';
 import { doFetch } from '../../Helpers/Fetching';
 import Style from './ProductsInfo.module.scss';
 import { AppContext } from '../../Context/ContextProvider';
@@ -13,7 +12,6 @@ const ProductsInfo = () => {
     const getData = async () => {
         const url = `https://api.mediehuset.net/stringsonline/products/${selectedProduct.id}`;
         const response = await doFetch(url);
-        console.log(response);
         setProduct(response);
     }
 
@@ -34,6 +32,7 @@ const ProductsInfo = () => {
                         <img key={index} src={item.fullpath} alt={item.filename} />
                     )
                 }): null}
+                {product.image ? <img src={product.image.fullpath} alt={product.image.pathname}/> : null}
             </span>
             <span className={Style.products_info_info}>
                 <h1>{product.name}</h1>
@@ -64,7 +63,7 @@ const ProductsInfo = () => {
                     </span>
                 </div>
                 <p className={Style.stock}>{product.stock} på lager</p>
-                <RatingSystem rating={product.rating} />
+                <RatingSystem />
             </span>
         </div>
     )

@@ -28,22 +28,22 @@ const CartItem = (props) => {
             case 'rem': 
                 if(count > 1) {
                     setCount(count - 1)
-                    setTotalPrice(parseInt(totalPrice) - parseInt(data.price))
+                    // setTotalPrice(parseInt(totalPrice) - parseInt(data.price))
 
                     if(loginData.user_id) {
                         setTimeout(() => {
-                            updateAmount();
+                            // updateAmount();
                         }, [100])
                     }
                 }
                 break;
             case 'add':
                 setCount(count + 1)
-                setTotalPrice(parseInt(totalPrice) + parseInt(data.price))
+                // setTotalPrice(parseInt(totalPrice) + parseInt(data.price))
 
                 if(loginData.user_id) {
                     setTimeout(() => {
-                        updateAmount();
+                        // updateAmount();
                     }, [100])
                 }
                 break;

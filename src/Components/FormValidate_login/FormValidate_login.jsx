@@ -25,19 +25,24 @@ const FormValidate = (props) => {
     }
 
     const settingData = useCallback((e) => {
-        if(e.target.name === 'Brugernavn') {
-            userData.username = e.target.value;
-        }
-        if(e.target.name === 'Kodeord') {
-            userData.password = e.target.value;
+        switch(e.target.name) {
+            default:
+                break;
+            case 'username':
+                userData.username = e.target.value;
+                break;
+            case 'password':
+                userData.password = e.target.value;
+                break;
         }
 
         removeError(e);
-    }, [])
+    }, [userData])
 
     const handleError = (element, error_message) => {
         element.style.borderColor = 'red';
         const error = document.querySelector('.error_message');
+
         if(!error) {
             element.parentElement.insertAdjacentHTML('afterend', `<p class="error_message">${error_message}</p>`);
         }
@@ -46,15 +51,16 @@ const FormValidate = (props) => {
     const getData = async () => {
         const url = `https://api.mediehuset.net/token`;
         const formData = new FormData();
-        formData.append('username', userData.username);
-        formData.append('password', userData.password);
+            formData.append('username', userData.username);
+            formData.append('password', userData.password);
 
+        console.log(userData);
         const response = await doFetch(url, 'POST', formData);
 
         sessionStorage.setItem('token', JSON.stringify(response, null, 2));
         setLoginData(response);
 
-        history.push('/admin');
+        history.goBack();
     }
 
     const handleSubmit = () => {
