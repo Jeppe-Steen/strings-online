@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import {doFetch} from '../Helpers/Fetching';
 
 const AppContext = createContext();
 
@@ -11,6 +12,14 @@ const AppContextProvider = ({children}) => {
     const [ selectedCategory, setSelectedCategory ] = useState({});
     const [ selectedSubcategory, setSelectedSubcategory ] = useState({});
 
+
+    const removeShoppingcard_whenLoggingIn = async () => {
+        const url = `https://api.mediehuset.net/stringsonline/ratings/{{id}}`;
+        const key = loginData.access_token;
+        const response = await doFetch(url, 'DELETE', null, key)
+        return response;
+    } 
+
     // setting loginData id sessionStorage has them
     const settingLoginData = () => {
         const data = JSON.parse(sessionStorage.getItem('token'));
@@ -19,11 +28,14 @@ const AppContextProvider = ({children}) => {
                 setLoginData(data);
             }
         }
+        if(loginData.user_id) {
+            removeShoppingcard_whenLoggingIn();
+        }
     };
 
     useEffect(() => {
         settingLoginData();
-    }, []);
+    }, [loginData]);
 
     return (
         <AppContext.Provider

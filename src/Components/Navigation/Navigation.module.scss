@@ -192,13 +192,22 @@
             input {
                 width: 70%;
                 height: 45px;
-                padding: 5px;
+                padding: 5px 20px;
                 border: none;
+                background-color: #0A1D1C;
+                border: 1px solid #1F5E5B;
+                color: #00F9B6;
+
+                &::placeholder {
+                    color: #00F9B6;
+                }
             }
             button {
                 width: 25%;
                 height: 45px;
                 border: none;
+                background-color: #00F9B6;
+                color: #1F5E5B;
             }
         }
     }

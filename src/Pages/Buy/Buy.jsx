@@ -197,16 +197,16 @@ const Buy = () => {
 
                     <div className={Style.buy_section}>
                         <h2>Fakturerings- & leveringsadresse</h2>
-                        <input className={`${Style.fullWidth} required`} type="text" name="firstname" placeholder="Fornavn *" onKeyUp={(e) => {settingData(e)}}/>
-                        <input className={`${Style.fullWidth} required`} type="text" name="lastname" placeholder="Efternavn *" onKeyUp={(e) => {settingData(e)}}/>
-                        <input className={`${Style.fullWidth} required`} type="text" name="adress" placeholder="Gade/vej *" onKeyUp={(e) => {settingData(e)}}/>
+                        <input className={`${Style.fullWidth} required`} type="text" name="firstname" placeholder="Fornavn *" onKeyUp={(e) => {settingData(e)}} autoComplete="off" />
+                        <input className={`${Style.fullWidth} required`} type="text" name="lastname" placeholder="Efternavn *" onKeyUp={(e) => {settingData(e)}} autoComplete="off" />
+                        <input className={`${Style.fullWidth} required`} type="text" name="adress" placeholder="Gade/vej *" onKeyUp={(e) => {settingData(e)}} autoComplete="off" />
 
                         <span className={Style.buy_section_city}>
                             <span className={Style.inputWrapper}>
-                                <input className={`${Style.halfWidth} required`} type="number" name="zipcode" placeholder="Postnr. *" onKeyUp={(e) => {settingData(e)}}/>
+                                <input className={`${Style.halfWidth} required`} type="number" name="zipcode" placeholder="Postnr. *" onKeyUp={(e) => {settingData(e)}} autoComplete="off" />
                             </span>
                             <span className={Style.inputWrapper}>
-                                <input className={`${Style.halfWidth} required`} type="text" name="city" placeholder="By *" onKeyUp={(e) => {settingData(e)}}/>
+                                <input className={`${Style.halfWidth} required`} type="text" name="city" placeholder="By *" onKeyUp={(e) => {settingData(e)}} autoComplete="off" />
                             </span>
                         </span>
 
@@ -219,10 +219,10 @@ const Buy = () => {
                     <div className={Style.buy_section}>
                         <h2>Email & telefon</h2>
                         <span className={Style.inputWrapper}>
-                            <input className={`${Style.fullWidth} required`} type="email" name="email"  placeholder="Emailadresse *" onKeyUp={(e) => {settingData(e)}}/>
+                            <input className={`${Style.fullWidth} required`} type="email" name="email"  placeholder="Emailadresse *" onKeyUp={(e) => {settingData(e)}} autoComplete="off" />
                         </span>
                         <span className={Style.inputWrapper}>
-                            <input className={`${Style.fullWidth}`} type="number" name="phone" placeholder="Telefonnummer" onKeyUp={(e) => {settingData(e)}}/>
+                            <input className={`${Style.fullWidth}`} type="number" name="phone" placeholder="Telefonnummer" onKeyUp={(e) => {settingData(e)}} autoComplete="off" />
                         </span>
                         <p className={Style.message}>Med dit telefonnummer kan vi kontakte dig i tilfælde af spørgsmål eller problemer. Hvis du oplyser dit mobilnummer, kan vi også sende dig en forsendelsesbekræftelse via SMS.</p>
                     </div>
@@ -245,21 +245,21 @@ const Buy = () => {
 
                             <div className={Style.hiddenMenu}>
                                 <span className={Style.inputWrapper}>
-                                    <input className={`${Style.fullWidth} required`} type="number" name="card_num" placeholder="Kortnummer *" onKeyUp={(e) => {settingData(e)}}/>
+                                    <input className={`${Style.fullWidth} required`} type="number" name="card_num" placeholder="Kortnummer *" onKeyUp={(e) => {settingData(e)}} autoComplete="off" />
                                 </span>
                                 <span className={Style.buy_section_year}>
                                     <span className={Style.inputWrapper}>
-                                        <input className={`${Style.halfWidth} required`} type="number" name="month" placeholder="Måned *" onKeyUp={(e) => {settingData(e)}}/>
+                                        <input className={`${Style.halfWidth} required`} type="number" name="month" placeholder="Måned *" onKeyUp={(e) => {settingData(e)}} autoComplete="off" />
                                     </span>
                                     <span className={Style.inputWrapper}>
-                                        <input className={`${Style.halfWidth} required`} type="number" name="year" placeholder="År *" onKeyUp={(e) => {settingData(e)}}/>
+                                        <input className={`${Style.halfWidth} required`} type="number" name="year" placeholder="År *" onKeyUp={(e) => {settingData(e)}} autoComplete="off" />
                                     </span>
                                 </span>
                                 <span className={Style.inputWrapper}>
-                                    <input className={`${Style.fullWidth} required`} type="number" name="code" placeholder="Kontrolciffer *" onKeyUp={(e) => {settingData(e)}}/>
+                                    <input className={`${Style.fullWidth} required`} type="number" name="code" placeholder="Kontrolciffer *" onKeyUp={(e) => {settingData(e)}} autoComplete="off" />
                                 </span>
                                 <span className={Style.inputWrapper}>
-                                    <input className={`${Style.fullWidth} required`} type="text" name="card_name" placeholder="Kort indehaver *" onKeyUp={(e) => {settingData(e)}}/>
+                                    <input className={`${Style.fullWidth} required`} type="text" name="card_name" placeholder="Kort indehaver *" onKeyUp={(e) => {settingData(e)}} autoComplete="off" />
                                 </span>
                             </div>
                         </div>

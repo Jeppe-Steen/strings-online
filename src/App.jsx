@@ -13,6 +13,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 
 import {AppContextProvider} from './Context/ContextProvider';
+import { PageFooter } from './Components/PageFooter/PageFooter'
 
 function App() {
   return (
@@ -40,6 +41,8 @@ function App() {
           <Route exact path="/handelsbetingelser"> <Conditions /> </Route>
 
         </Switch>
+
+        <PageFooter />
       </BrowserRouter>
     </AppContextProvider>
   );

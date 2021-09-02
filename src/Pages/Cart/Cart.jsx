@@ -2,7 +2,7 @@ import { useHistory, useRouteMatch } from "react-router";
 import { Breadcrum } from "../../Components/Breadcrum/Breadcrum";
 import { ProductNav } from "../../Components/ProductNav/ProductNav";
 import { AppContext } from "../../Context/ContextProvider";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { CartItem } from "../../Components/CartItem/CartItem";
 
@@ -14,7 +14,16 @@ const Cart = () => {
     const passedBReadcrum = url.replace('/', '');
     const history = useHistory();
 
+    const [userShoppingcart, setUserShoppingcart] = useState([]);
+
     const {shoppingcart, setShoppingcart, totalPrice, setTotalPrice, loginData} = useContext(AppContext)
+
+    const getUser_shoppingcart = async () => {
+        const url = `https://api.mediehuset.net/stringsonline/cart`;
+        const key = loginData.access_token;
+        const response = await doFetch(url, 'GET', null, key);
+        setUserShoppingcart(response);
+    }
 
     // removing items from card when pressing buttom
     const removeItems_fromUser = async () => {
@@ -66,9 +75,12 @@ const Cart = () => {
 
     useEffect(() => {
         if(loginData.user_id) {
-            shoppingcart.forEach(item => {
-                addItemTo_userCart(item.id, 1);
-            })
+            getUser_shoppingcart();
+            if(userShoppingcart.length <= 0) {
+                shoppingcart.forEach(item => {
+                    addItemTo_userCart(item.id, 1);
+                }) 
+            }
         }
     }, [loginData])
 
