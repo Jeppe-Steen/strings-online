@@ -4,12 +4,20 @@ import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../Context/ContextProvider';
 
 const Breadcrum = (props) => {
-    const {selectedCategory, selectedSubcategory, selectedProduct} = useContext(AppContext);
+    const {selectedCategory, setSelectedCategory, selectedSubcategory, setSelectedSubcategory, selectedProduct} = useContext(AppContext);
 
     const [breadcrum, setBreadcrum] = useState();
+    
+    const checkRoute = (route) => {
+        if(route !== 'produkter') {
+            setSelectedCategory('');
+            setSelectedSubcategory('');
+        }
+    }
 
     useEffect(() => {
         setBreadcrum(props.route);
+        checkRoute(props.route);
     }, [props])
 
     return (
