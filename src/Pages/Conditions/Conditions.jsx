@@ -12,7 +12,7 @@ const Conditions = () => {
         <main className={`content_container`}>
             <Breadcrum route={passedBReadcrum} />
             <ProductNav />
-            <section className={Style.conditions}>
+            <section className={`${Style.conditions} content`}>
                 <header><h1>Handelsbetingelser</h1></header>
                 <h2>Betaling</h2>
                 <p>

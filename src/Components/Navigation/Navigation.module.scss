@@ -10,7 +10,9 @@
     align-items: center;
 
     @media (max-width: 1199px) {
-        display: none;
+        position: sticky;
+        display: flex;
+        flex-direction: column;
     }
 
     .pageNavigation_menuWithLogo {
@@ -25,9 +27,17 @@
         left: 5%;
         bottom: 10%;
 
+        @media (max-width: 1199px) {
+            height: 80px;
+        } 
+
         .pageNavigation_logo {
             height: 100%;
             z-index: 9001;
+
+            @media (max-width: 1199px) {
+                height: 100%;
+            }
         }
 
         .pageNavigation_menu {
@@ -42,6 +52,24 @@
             flex-direction: row;
             align-items: center;
 
+            @media (max-width: 1199px) {
+                left: 158px;
+                height: 37px;
+                width: 170px;
+            }
+
+            .hiddenMenu {
+                display: none;
+
+                @media (max-width: 1199px) {
+                    display: unset;
+                    position: absolute;
+                    right: 20px;
+                    color: white;
+                    z-index: 9008;
+                }
+            }
+
             ul {
                 position: absolute;
                 right: 10px;
@@ -50,13 +78,42 @@
                 align-items: center;
                 list-style: none;
 
+                @media (max-width: 1199px) {
+                    position: fixed;
+                    z-index: 1000;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100vh;
+                    flex-direction: column;
+                    justify-content: center;
+                    background-color: #131313;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: 1s ease-out;
+
+                    &.active {
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+
                 .pageNavigation_link {
                     margin: 0 20px;
                     text-decoration: none;
                     color: white;
 
+                    @media (max-width: 1199px) {
+                        font-size: 1.5rem;
+                        margin-top: 20px;
+                    }
+
                     &:last-child {
                         margin: 0;
+
+                        @media(max-width: 1199px) {
+                            margin-top: 20px;
+                        }
                     }
                 }
 
@@ -84,6 +141,11 @@
         bottom: 24%;
         overflow: hidden;
 
+        @media (max-width: 1199px) {
+            position: fixed;
+            bottom: 30px
+        }
+
         .pageNavigation_info {
             display: flex;
             flex-direction: row;
@@ -93,6 +155,17 @@
             height: 30%;
             padding: 10px 0;
             color: white;
+            
+            @media (max-width: 1199px) {
+                display: none;
+                flex-direction: column;
+                height: 150px;
+
+                &.active {
+                    display: flex;
+                    z-index: 9999;
+                }
+            }
 
             .pageNavigation_info_mail, .pageNavigation_info_phone, .pageNavigation_info_cart{
                 display: flex;
@@ -111,6 +184,10 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
+
+            @media (max-width: 1199px) {
+                display: none;
+            }
 
             input {
                 width: 70%;

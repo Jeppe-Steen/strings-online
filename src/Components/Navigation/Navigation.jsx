@@ -5,15 +5,32 @@ import logo from '../../Assets/Svg/Logo.svg'
 import { Mail, Phone, ShoppingBasket } from '../../Assets/Svg/SvgComponents'
 
 import { AppContext } from '../../Context/ContextProvider';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 const Navigation = () => {
 
     const {shoppingcart, loginData, setLoginData} = useContext(AppContext);
+    const [menuActive, setMenuActive] = useState(false);
+    const [menuName, setMenuName] = useState('Menu');
 
     const handleLogout = () => {
         setLoginData({});
         sessionStorage.clear();
+        closeMenu();
+    }
+
+    const handleMenu = () => {
+        setMenuActive(!menuActive);
+        if(menuActive) {
+            setMenuName('Menu')
+        } else {
+            setMenuName('Luk')
+        }
+    }
+
+    const closeMenu = () => {
+        setMenuActive(false);
+        setMenuName('Menu');
     }
 
     return (
@@ -21,18 +38,20 @@ const Navigation = () => {
             <span className={Style.pageNavigation_menuWithLogo}>
                 <img className={Style.pageNavigation_logo} src={logo} alt="strings online logo" />
                 <nav className={Style.pageNavigation_menu}>
-                    <ul>
-                        <Link className={Style.pageNavigation_link} to="/"><li>Forside</li></Link>
-                        <Link className={Style.pageNavigation_link} to="/handelsbetingelser"><li>Salgs- og handelbetingelser</li></Link>
+                    <ul className={menuActive ? Style.active : null}>
+                        <Link onClick={closeMenu} className={Style.pageNavigation_link} to="/"><li>Forside</li></Link>
+                        <Link onClick={closeMenu} className={Style.pageNavigation_link} to="/handelsbetingelser"><li>Salgs- og handelbetingelser</li></Link>
                         {loginData.user_id ? <Link onClick={handleLogout} className={`${Style.pageNavigation_link} ${Style.pageNavigation_link_login}`} to="/"><li>Logout</li></Link> :
-                        <Link className={`${Style.pageNavigation_link} ${Style.pageNavigation_link_login}`} to="/login"><li>Login</li></Link>}
-                        {loginData.user_id ? <Link className={`${Style.pageNavigation_link} ${Style.pageNavigation_link_admin}`} to="/admin"><li>Admin</li></Link> : null}
+                        <Link onClick={closeMenu} className={`${Style.pageNavigation_link} ${Style.pageNavigation_link_login}`} to="/login"><li>Login</li></Link>}
+                        {loginData.user_id ? <Link onClick={closeMenu} className={`${Style.pageNavigation_link} ${Style.pageNavigation_link_admin}`} to="/admin"><li>Admin</li></Link> : null}
                     </ul>
+
+                    <p onClick={handleMenu} className={Style.hiddenMenu}>{menuName}</p>
                 </nav>
             </span>
 
             <span className={Style.pageNavigation_searchAndInfo}>
-                <div className={Style.pageNavigation_info}>
+                <div className={!menuActive ? `${Style.pageNavigation_info}` : `${Style.active} ${Style.pageNavigation_info}`}>
                     <div className={Style.pageNavigation_info_mail}>
                         <Mail color="white" />
                         <p>mail@mail.com</p>
