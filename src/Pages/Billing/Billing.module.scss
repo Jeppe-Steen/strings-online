@@ -1,0 +1,82 @@
+.billing {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @media (max-width: 1199px) {
+        flex-direction: column;
+    }
+
+    .billing_section {
+        width: 65%;
+        min-height: 100px;
+        padding: 30px;
+        border: 1px solid #1F5E5B;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @media (max-width: 1199px) {
+            width: 100%;
+        }
+
+        .billing_header {
+            background-color: #00F9B6;
+            padding: 10px 20px;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            color: #131313;
+
+            @media (max-width: 1199px) {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    
+        .billing_list {
+            width: 80%;
+
+            @media (max-width: 1199px) {
+                width: 100%;
+            }
+    
+            .billing_listItem {
+                width: 100%;
+                display: grid;
+                grid-template: auto / 20% 40% 20% 20%;
+                grid-template-areas: 'first second third fourth';
+                color: white;
+                border-bottom: 1px solid #1F5E5B;
+                padding: 10px 0;
+
+                @media (max-width: 1199px) {
+                    width: 100%;
+                    display: grid;
+                    align-content: center;
+                    grid-template: repeat(4, auto) / 100%;
+                    grid-template-areas: 'first' 'second' 'third' 'fourth';
+                    padding: 20px 0;
+                }
+
+                .color_green {
+                    color: #00F9B6
+                }
+
+                .first { grid-area: first; font-size: 1.1rem; font-weight: 600;}
+                .second { grid-area: second; }
+                .third { grid-area: third; }
+                .fourth { grid-area: fourth; }
+            }
+        }
+    }
+    
+    .billing_sectionTwo {
+        width: 30%;
+        color: white;
+
+        div {
+            margin-bottom: 30px;
+        }
+    }
+}

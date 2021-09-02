@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 const AppContext = createContext();
 
@@ -10,6 +10,20 @@ const AppContextProvider = ({children}) => {
     const [ selectedProduct, setSelectedProduct ] = useState([]);
     const [ selectedCategory, setSelectedCategory ] = useState('');
     const [ selectedSubcategory, setSelectedSubcategory ] = useState('');
+
+    // setting loginData id sessionStorage has them
+    const settingLoginData = () => {
+        const data = JSON.parse(sessionStorage.getItem('token'));
+        if(data && data.user_id) {
+            setLoginData(data);
+        } else {
+            return;
+        }
+    };
+
+    useEffect(() => {
+        settingLoginData();
+    }, []);
 
 
     return (

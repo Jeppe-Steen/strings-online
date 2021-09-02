@@ -10,6 +10,7 @@ const PreviewFrontpage = (props) => {
 
     const {shoppingcart, setShoppingcart, setTotalPrice, totalPrice, loginData} = useContext(AppContext);
 
+    
     const user_pushToCart = async () => {
         const url = `https://api.mediehuset.net/stringsonline/cart`;
         const key = loginData.access_token;
@@ -19,6 +20,7 @@ const PreviewFrontpage = (props) => {
         const response = await doFetch(url, 'POST', formData, key)
         return response;
     }
+    
     
     const handleClick = () => {
         setTotalPrice(parseInt(totalPrice) + parseInt(product.price))

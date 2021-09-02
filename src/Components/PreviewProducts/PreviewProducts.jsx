@@ -21,6 +21,7 @@ const PreviewProducts = (props) => {
         console.log(response);
         return response;
     }
+    
 
     const handleClick = () => {
         setTotalPrice(parseInt(totalPrice) + parseInt(dataObject.price))

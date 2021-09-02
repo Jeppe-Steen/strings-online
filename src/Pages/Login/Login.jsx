@@ -22,7 +22,7 @@ const Login = () => {
 
     useEffect(() => {
         if(!loginData.message && loginData.user_id) {
-            history.push('/admin');
+            history.goBack();
         }
     }, [loginData])
 

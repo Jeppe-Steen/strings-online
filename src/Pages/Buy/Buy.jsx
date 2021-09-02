@@ -1,13 +1,18 @@
 import { Breadcrum } from "../../Components/Breadcrum/Breadcrum";
 import { ProductNav } from "../../Components/ProductNav/ProductNav";
-import { useRouteMatch } from "react-router";
+import { useHistory, useRouteMatch } from "react-router";
 
 import Style from './Buy.module.scss';
-import { useCallback } from "react";
+import { useCallback, useContext } from "react";
+import { doFetch } from "../../Helpers/Fetching";
+import { AppContext } from "../../Context/ContextProvider";
 
 const Buy = () => {
     const { url } = useRouteMatch();
     const passedBreadcrum = url.replace('/', '');
+    const history = useHistory();
+
+    const {loginData, setShoppingcart, setTotalPrice} = useContext(AppContext);
 
     const inputData = {
         firstname: '',
@@ -16,13 +21,13 @@ const Buy = () => {
         zipcode: null,
         city: '',
         email: '',
-        phone: null,
-        reg_num: null,
-        card_num: null,
-        month: null,
-        year: null,
-        code: null,
-        card_name: '',
+        status: 1,
+        phone: null, // not needed for fetch
+        card_num: null, // not needed for fetch
+        month: null, // not needed for fetch
+        year: null, // not needed for fetch
+        code: null, // not needed for fetch
+        card_name: '', // not needed for fetch
     }
 
     const handleError = (element, error_message) => {
@@ -70,6 +75,16 @@ const Buy = () => {
                 }
             }
         }
+
+        if(!hasError) {
+            setShoppingcart([]);
+            setTotalPrice(0);
+            
+            setTimeout(() => {
+                postOrder();
+                history.push('/kvittering');  
+            }, [500])
+        }
     };
 
     // patterns for validation
@@ -100,20 +115,70 @@ const Buy = () => {
     }
 
     const settingData = useCallback((e) => {
-        if(e.target.name === 'Brugernavn') {
-            inputData.username = e.target.value;
-        }
-        if(e.target.name === 'Kodeord') {
-            inputData.password = e.target.value;
+        switch(e.target.name) {
+            default:
+                break;
+            case 'firstname':
+                inputData.firstname = e.target.value;
+                break;
+            case 'lastname':
+                inputData.lastname = e.target.value;
+                break;
+            case 'adress':
+                inputData.adress = e.target.value;
+                break;
+            case 'zipcode':
+                inputData.zipcode = e.target.value;
+                break;
+            case 'city':
+                inputData.city = e.target.value;
+                break;
+            case 'email':
+                inputData.email = e.target.value;
+                break;
+            case 'status':
+                inputData.status = e.target.value;
+                break;
+            case 'phone':
+                inputData.phone = e.target.value;
+                break;
+            case 'card_num':
+                inputData.card_num = e.target.value;
+                break;
+            case 'month':
+                inputData.month = e.target.value;
+                break;
+            case 'year':
+                inputData.year = e.target.value;
+                break;
+            case 'code':
+                inputData.code = e.target.value;
+                break;
+            case 'card_name':
+                inputData.card_name = e.target.value;
+                break;
         }
 
         removeError(e);
     }, [])
 
-
-    //add onKeyUp to every input.
-
-
+    const postOrder = async () => {
+        const url = `https://api.mediehuset.net/stringsonline/orders`;
+        const formData = new FormData();
+            formData.append('firstname', inputData.firstname);
+            formData.append('lastname', inputData.lastname);
+            formData.append('address', inputData.adress);
+            formData.append('zipcode', inputData.zipcode);
+            formData.append('city', inputData.city);
+            formData.append('email', inputData.email);
+            formData.append('status', inputData.status);
+            formData.append('delivery_address', inputData.adress);
+            formData.append('delivery_zipcode', inputData.zipcode);
+            formData.append('delivery_city', inputData.city);
+        const token = loginData.access_token;
+        const response = await doFetch(url, 'POST', formData, token);
+        return response;
+    }
 
 
 
@@ -133,16 +198,16 @@ const Buy = () => {
 
                     <div className={Style.buy_section}>
                         <h2>Fakturerings- & leveringsadresse</h2>
-                        <input className={`${Style.fullWidth} required`} type="text"  placeholder="Fornavn *" />
-                        <input className={`${Style.fullWidth} required`} type="text" placeholder="Efternavn *" />
-                        <input className={`${Style.fullWidth} required`} type="text" placeholder="Gade/vej *" />
+                        <input className={`${Style.fullWidth} required`} type="text" name="firstname" placeholder="Fornavn *" onKeyUp={(e) => {settingData(e)}}/>
+                        <input className={`${Style.fullWidth} required`} type="text" name="lastname" placeholder="Efternavn *" onKeyUp={(e) => {settingData(e)}}/>
+                        <input className={`${Style.fullWidth} required`} type="text" name="adress" placeholder="Gade/vej *" onKeyUp={(e) => {settingData(e)}}/>
 
                         <span className={Style.buy_section_city}>
                             <span className={Style.inputWrapper}>
-                                <input className={`${Style.halfWidth} required`} type="number" placeholder="Postnr. *" />
+                                <input className={`${Style.halfWidth} required`} type="number" name="zipcode" placeholder="Postnr. *" onKeyUp={(e) => {settingData(e)}}/>
                             </span>
                             <span className={Style.inputWrapper}>
-                                <input className={`${Style.halfWidth} required`} type="text" placeholder="By *" />
+                                <input className={`${Style.halfWidth} required`} type="text" name="city" placeholder="By *" onKeyUp={(e) => {settingData(e)}}/>
                             </span>
                         </span>
 
@@ -155,10 +220,10 @@ const Buy = () => {
                     <div className={Style.buy_section}>
                         <h2>Email & telefon</h2>
                         <span className={Style.inputWrapper}>
-                            <input className={`${Style.fullWidth} required`} type="email" placeholder="Emailadresse *" />
+                            <input className={`${Style.fullWidth} required`} type="email" name="email"  placeholder="Emailadresse *" onKeyUp={(e) => {settingData(e)}}/>
                         </span>
                         <span className={Style.inputWrapper}>
-                            <input className={`${Style.fullWidth}`} type="number" placeholder="Telefonnummer" />
+                            <input className={`${Style.fullWidth}`} type="number" name="phone" placeholder="Telefonnummer" onKeyUp={(e) => {settingData(e)}}/>
                         </span>
                         <p className={Style.message}>Med dit telefonnummer kan vi kontakte dig i tilfælde af spørgsmål eller problemer. Hvis du oplyser dit mobilnummer, kan vi også sende dig en forsendelsesbekræftelse via SMS.</p>
                     </div>
@@ -171,12 +236,6 @@ const Buy = () => {
                                 <input name="transfer" type="radio" value="bank" />
                                 <label htmlFor="">Bankoverførsel</label>
                             </span>
-
-                            <div className={Style.hiddenMenu}>
-                                <span className={Style.inputWrapper}>
-                                    <input className={`${Style.fullWidth}`} type="text" placeholder="Regnr. Kortnr. *" />
-                                </span>
-                            </div>
                         </div>
 
                         <div className={Style.buy_payment}>
@@ -187,21 +246,21 @@ const Buy = () => {
 
                             <div className={Style.hiddenMenu}>
                                 <span className={Style.inputWrapper}>
-                                    <input className={`${Style.fullWidth} required`} type="number" placeholder="Kortnummer *" />
+                                    <input className={`${Style.fullWidth} required`} type="number" name="card_num" placeholder="Kortnummer *" onKeyUp={(e) => {settingData(e)}}/>
                                 </span>
                                 <span className={Style.buy_section_year}>
                                     <span className={Style.inputWrapper}>
-                                        <input className={`${Style.halfWidth} required`} type="number" placeholder="Måned *"/>
+                                        <input className={`${Style.halfWidth} required`} type="number" name="month" placeholder="Måned *" onKeyUp={(e) => {settingData(e)}}/>
                                     </span>
                                     <span className={Style.inputWrapper}>
-                                        <input className={`${Style.halfWidth} required`} type="number" placeholder="År *"/>
+                                        <input className={`${Style.halfWidth} required`} type="number" name="year" placeholder="År *" onKeyUp={(e) => {settingData(e)}}/>
                                     </span>
                                 </span>
                                 <span className={Style.inputWrapper}>
-                                    <input className={`${Style.fullWidth} required`} type="number" placeholder="Kontrolciffer *" />
+                                    <input className={`${Style.fullWidth} required`} type="number" name="code" placeholder="Kontrolciffer *" onKeyUp={(e) => {settingData(e)}}/>
                                 </span>
                                 <span className={Style.inputWrapper}>
-                                    <input className={`${Style.fullWidth} required`} type="text" placeholder="Kort indehaver *" />
+                                    <input className={`${Style.fullWidth} required`} type="text" name="card_name" placeholder="Kort indehaver *" onKeyUp={(e) => {settingData(e)}}/>
                                 </span>
                             </div>
                         </div>

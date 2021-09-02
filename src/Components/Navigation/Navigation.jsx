@@ -43,7 +43,7 @@ const Navigation = () => {
                     </div>
                     <div className={Style.pageNavigation_info_cart}>
                         <Link to="/indkøbskurv"><ShoppingBasket color="white" /></Link>
-                        <p>{shoppingcart.length}</p>
+                        <p className={Style.count}>{shoppingcart.length}</p>
                     </div>
                 </div>
                 <div className={Style.pageNavigation_search}>

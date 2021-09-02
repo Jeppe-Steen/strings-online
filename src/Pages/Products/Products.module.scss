@@ -13,9 +13,11 @@
             justify-content: center;
         }
 
-        p {
-            width: 100px;
-            background-color: lightgrey;
+        .filter {
+            width: 150px;
+            padding: 5px 15px;
+            background-color: #00F9B6;
+            color: #131313;
             margin-left: 20px;
             text-align: center;
         }

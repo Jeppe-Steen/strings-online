@@ -3,6 +3,10 @@ $halfWidth: 48%;
 .formValidate {
     width: 30%;
 
+    @media (max-width: 1199px) {
+        width: 100%;
+    }
+
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

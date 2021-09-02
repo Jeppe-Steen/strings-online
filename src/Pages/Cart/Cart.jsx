@@ -1,4 +1,4 @@
-import { useRouteMatch } from "react-router";
+import { useHistory, useRouteMatch } from "react-router";
 import { Breadcrum } from "../../Components/Breadcrum/Breadcrum";
 import { ProductNav } from "../../Components/ProductNav/ProductNav";
 import { AppContext } from "../../Context/ContextProvider";
@@ -12,13 +12,26 @@ import { doFetch } from "../../Helpers/Fetching";
 const Cart = () => {
     const {url} = useRouteMatch();
     const passedBReadcrum = url.replace('/', '');
+    const history = useHistory();
 
     const {shoppingcart, setShoppingcart, totalPrice, setTotalPrice, loginData} = useContext(AppContext)
 
-    const removeListFromUser = async () => {
+    // removing items from card when pressing buttom
+    const removeItems_fromUser = async () => {
         const url = `https://api.mediehuset.net/stringsonline/cart`;
         const key = loginData.access_token;
         const response = await doFetch(url, 'DELETE', null, key)
+        return response;
+    }
+    
+    // if there is items in the cart before login, the items will be added after login
+    const addItemTo_userCart = async (id, count) => {
+        const url = `https://api.mediehuset.net/stringsonline/cart`;
+        let formData = new FormData();
+            formData.append('product_id', id);
+            formData.append('quantity', count);
+        const key = loginData.access_token;
+        const response = await doFetch(url, 'POST', formData, key);
         return response;
     }
 
@@ -27,36 +40,44 @@ const Cart = () => {
         setShoppingcart([]);
 
         if(loginData.user_id) {
-            removeListFromUser();
+            removeItems_fromUser();
         }
     }
 
     const handleBuy = () => {
-        window.location = '/køb';
+        if(!loginData.user_id) {
+            if(shoppingcart.length) {
+                history.push('/login');
+            }
+        } else {
+            if(shoppingcart.length) {
+                history.push('/køb');
+            }
+        }
+        
     }
 
-    const getList = async () => {
-        const url = `https://api.mediehuset.net/stringsonline/cart`;
-        const key = loginData.access_token;
-        const response = await doFetch(url, 'GET', null, key);
-        console.log(response);
-    } 
-
     useEffect(() => {
-        getList();
-
         if(!shoppingcart.length && loginData.user_id) {
-            removeListFromUser();
+            removeItems_fromUser();
         }
 
     }, [shoppingcart, totalPrice]);
+
+    useEffect(() => {
+        if(loginData.user_id) {
+            shoppingcart.forEach(item => {
+                addItemTo_userCart(item.id, 1);
+            })
+        }
+    }, [loginData])
 
     return (
         <main className={`content_container`}>
             <Breadcrum route={passedBReadcrum} />
             <ProductNav />
             <section className={`${Style.cart} content`}>
-                {shoppingcart ? shoppingcart.map((items, index) => {
+                {shoppingcart.length ? shoppingcart.map((items, index) => {
                     return(
                         <CartItem key={index} place={index} data={items} />
                     )
