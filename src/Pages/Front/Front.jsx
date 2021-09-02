@@ -5,6 +5,7 @@ import { ProductNav } from "../../Components/ProductNav/ProductNav";
 import { doFetch } from "../../Helpers/Fetching";
 
 import Style from './Front.module.scss';
+import Guitar from '../../Assets/Acoustic001.png';
 
 const Front = () => {
 
@@ -47,7 +48,7 @@ const Front = () => {
             <ProductNav />
             <section className="content">
                 <figure className={Style.front_hero}>
-                    <img src="https://cdn.mos.cms.futurecdn.net/hXjosYWpKQP2xW6xaNWJw4.jpg" alt="guitar" />
+                    <img src={Guitar} alt="guitar" />
                     <figcaption>
                         <h1>Martin <strong>GPC-11E</strong></h1>
                         <p>SERIES ELECTRO ACOUSTIC</p>
