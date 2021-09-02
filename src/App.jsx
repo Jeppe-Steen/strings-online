@@ -6,6 +6,7 @@ import { Buy } from './Pages/Buy/Buy'
 import { Billing } from './Pages/Billing/Billing'
 import { Admin } from './Pages/Admin/Admin'
 import { Login } from './Pages/Login/Login'
+import { Conditions } from './Pages/Conditions/Conditions'
 
 import { Navigation } from './Components/Navigation/Navigation'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
@@ -35,6 +36,8 @@ function App() {
           <Route exact path="/Login"> <Login /> </Route>
 
           <Route exact path="/admin"> <Admin /> </Route>
+
+          <Route exact path="/handelsbetingelser"> <Conditions /> </Route>
 
         </Switch>
       </BrowserRouter>
