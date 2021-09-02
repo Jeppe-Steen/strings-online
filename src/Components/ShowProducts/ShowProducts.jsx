@@ -16,7 +16,7 @@ const ShowProducts = (props) => {
     const [changedProducts, setChangedProducts] = useState([]);
 
     const getProducts = async () => {
-        const url = `https://api.mediehuset.net/stringsonline/groups/${selectedCategory}/subgroup/${selectedSubcategory}`
+        const url = `https://api.mediehuset.net/stringsonline/groups/${selectedCategory.id}/subgroup/${selectedSubcategory.id}`
         const response = await doFetch(url);
         setProducts(response.subgroup.products);
         setChangedProducts(response.subgroup.products);

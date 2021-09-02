@@ -49,7 +49,7 @@ const ProductNav = () => {
                         <ul className={Style.productNav_submenu}>
                             {item.subgroup.map(element => {
                                 return (
-                                    <NavLink key={element.id} onClick={() => {handleClick(item.id, element.id)}} className={Style.productNav_submenuItem} to={`/produkter/${item.id}/${element.id}`}><li> {element.title} </li></NavLink>
+                                    <NavLink key={element.id} onClick={() => {handleClick({title: item.title, id: item.id}, {title: element.title, id: element.id})}} className={Style.productNav_submenuItem} to={`/produkter/${item.title}/${element.title}`}><li> {element.title} </li></NavLink>
                                 )
                             })}
                         </ul>

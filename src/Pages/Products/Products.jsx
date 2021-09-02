@@ -21,7 +21,7 @@ const Products = () => {
     const [sort, setSort] = useState('');
 
     const getBrands = async () => {
-        const url = `https://api.mediehuset.net/stringsonline/groups/${selectedCategory}/subgroup/${selectedSubcategory}`;
+        const url = `https://api.mediehuset.net/stringsonline/groups/${selectedCategory.id}/subgroup/${selectedSubcategory.id}`;
         const response = await doFetch(url);
 
         // creating filteroptions.

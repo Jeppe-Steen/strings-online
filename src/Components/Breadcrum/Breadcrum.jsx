@@ -4,14 +4,15 @@ import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../Context/ContextProvider';
 
 const Breadcrum = (props) => {
-    const {selectedCategory, setSelectedCategory, selectedSubcategory, setSelectedSubcategory, selectedProduct} = useContext(AppContext);
+    const {selectedCategory, setSelectedCategory, selectedSubcategory, setSelectedSubcategory, selectedProduct, setSelectedProduct} = useContext(AppContext);
 
     const [breadcrum, setBreadcrum] = useState();
     
     const checkRoute = (route) => {
         if(route !== 'produkter') {
-            setSelectedCategory('');
-            setSelectedSubcategory('');
+            setSelectedCategory({});
+            setSelectedSubcategory({});
+            setSelectedProduct({});
         }
     }
 
@@ -25,9 +26,9 @@ const Breadcrum = (props) => {
             <House color="neonGreen" />
             <p>forside \</p>
             <p>{breadcrum}</p>
-            {selectedCategory ? <p>\ {selectedCategory} \</p> : null}
-            {selectedSubcategory ? <p>{selectedSubcategory}</p> : null}
-            {selectedProduct ? <p> {selectedProduct} </p> : null}
+            {selectedCategory.title ? <p>\ {selectedCategory.title} \</p> : null}
+            {selectedSubcategory.title ? <p>{selectedSubcategory.title}</p> : null}
+            {selectedProduct.title ? <p>\ {selectedProduct.title} </p> : null}
         </section>
     )
 }

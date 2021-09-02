@@ -1,7 +1,6 @@
 import Style from './PreviewFrontpage.module.scss';
 import { AppContext } from '../../Context/ContextProvider';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom'
 
 import {doFetch} from '../../Helpers/Fetching';
 
@@ -37,7 +36,6 @@ const PreviewFrontpage = (props) => {
             <figcaption>
                 <h3>{product.name}</h3>
                 <p>{product.description_short}</p>
-                <Link to={`/produkter/`}>Læs mere</Link>
                 <span>
                     <p>Pris: {product.price}</p>
                     <button onClick={handleClick}>Læg i kurv</button>

@@ -18,7 +18,6 @@ const PreviewProducts = (props) => {
             formData.append('product_id', dataObject.id);
             formData.append('quantity', 1);
         const response = await doFetch(url, 'POST', formData, key)
-        console.log(response);
         return response;
     }
     
@@ -33,7 +32,7 @@ const PreviewProducts = (props) => {
     }
 
     const getLink = async () => {
-        const url = `https://api.mediehuset.net/stringsonline/groups/${selectedSubcategory}`;
+        const url = `https://api.mediehuset.net/stringsonline/groups/${selectedSubcategory.id}`;
         const response = await doFetch(url);
         setLinkData(response)
     };
@@ -49,7 +48,7 @@ const PreviewProducts = (props) => {
                 <span className={Style.previewProducts_info}>
                     <h2>{dataObject.name}</h2>
                     <p>{dataObject.description_short}</p>
-                    <Link onClick={() => {setSelectedProduct(dataObject.id)}}className={Style.link} to={`/produkter/${linkData.parent_id}/${linkData.id}/${dataObject.id}`}>Læs mere..</Link>
+                    <Link onClick={() => {setSelectedProduct({title: dataObject.name, id: dataObject.id})}} className={Style.link} to={`/produkter/${linkData.title}/${linkData.title}/${dataObject.name}`}>Læs mere..</Link>
                 </span>
                 <span className={Style.previewProducts_buttons}>
                     <p className={Style.price}>pris: DKK {dataObject.price}</p>

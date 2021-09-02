@@ -8,8 +8,8 @@ const AppContextProvider = ({children}) => {
     const [ loginData, setLoginData ] = useState({});
     const [ totalPrice, setTotalPrice ] = useState(0);
     const [ selectedProduct, setSelectedProduct ] = useState([]);
-    const [ selectedCategory, setSelectedCategory ] = useState('');
-    const [ selectedSubcategory, setSelectedSubcategory ] = useState('');
+    const [ selectedCategory, setSelectedCategory ] = useState({});
+    const [ selectedSubcategory, setSelectedSubcategory ] = useState({});
 
     // setting loginData id sessionStorage has them
     const settingLoginData = () => {
@@ -24,7 +24,6 @@ const AppContextProvider = ({children}) => {
     useEffect(() => {
         settingLoginData();
     }, []);
-
 
     return (
         <AppContext.Provider
